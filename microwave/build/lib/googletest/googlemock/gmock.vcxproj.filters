@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\gr20j\JanosGorondi\FONTYS\t-sem3-cb-master\sd\7_OOA_and_OOD\Microwave\lib\googletest\googletest\src\gtest-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gr20j\JanosGorondi\FONTYS\t-sem3-cb-master\sd\7_OOA_and_OOD\Microwave\lib\googletest\googlemock\src\gmock-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\gr20j\JanosGorondi\FONTYS\t-sem3-cb-master\sd\7_OOA_and_OOD\Microwave\lib\googletest\googlemock\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9A0AC304-F4F4-3A02-9C07-EF6D03C19CAF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
