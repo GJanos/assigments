@@ -91,7 +91,7 @@ TEST_F(MicrowaveTest, heating_power_change_func)
 
 TEST_F(MicrowaveTest, heating_time_up_func)
 {
-    EXPECT_CALL(motor, SetPower(0).Times(2));
+    EXPECT_CALL(motor, SetPower(0)).Times(2);
     EXPECT_CALL(light, Off());
     EXPECT_CALL(ui, StopClock());
     EXPECT_CALL(ui, Ping());
