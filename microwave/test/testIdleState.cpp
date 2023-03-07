@@ -5,8 +5,8 @@
 #include "MSystem.h"
 #include "MUserInterface.h"
 
-using ::testing::Return;
 using ::testing::_;
+using ::testing::Return;
 
 class TestIdleState : public ::testing::Test
 {
@@ -30,4 +30,11 @@ TEST_F(TestIdleState, test_start_event)
     // EXPECT_CALL(ui, GetRequestedPower()).WillOnce(Return(800));
     // EXPECT_CALL(motor, SetPower(800));
     EXPECT_EQ(STATE_HEATING, microwave.HandleIdleState(EV_START));
+}
+
+TEST_F(TestIdleState, test_start_event)
+{
+    // EXPECT_CALL(ui, GetRequestedPower()).WillOnce(Return(800));
+    // EXPECT_CALL(motor, SetPower(800));
+    EXPECT_EQ(STATE_DOOR_OPENED, microwave.HandleIdleState(EV_DOOR_OPEN));
 }
