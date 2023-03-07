@@ -27,9 +27,12 @@ protected:
 
 TEST_F(MicrowaveTest, idle_start)
 {
-    // EXPECT_CALL(ui, GetRequestedPower()).WillOnce(Return(800));
-    // EXPECT_CALL(motor, SetPower(800));
     EXPECT_EQ(STATE_HEATING, microwave.HandleIdleState(EV_START));
+}
+
+TEST_F(MicrowaveTest, idle_door_closed)
+{
+    EXPECT_EQ(STATE_IDLE, microwave.HandleIdleState(EV_DOOR_CLOSE));
 }
 
 TEST_F(MicrowaveTest, idle_door_open)
