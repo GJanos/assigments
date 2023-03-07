@@ -3,7 +3,10 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/product",
+                "${workspaceFolder}/test",
+                "${workspaceFolder}/product"
             ],
             "defines": [
                 "_DEBUG",
