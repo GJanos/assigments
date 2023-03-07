@@ -17,6 +17,7 @@ States Microwave::HandleIdleState(Events ev)
         result = STATE_HEATING;
         light.On();
         ui.StartClock();
+        motor.SetPower(ui.GetRequestedPower());
         break;
 
     case EV_DOOR_OPEN:
@@ -55,7 +56,6 @@ States Microwave::HandleDoorOpenedState(Events ev)
 States Microwave::HandleHeatingState(Events ev)
 {
     States result = STATE_IDLE;
-    motor.SetPower(ui.GetRequestedPower());
     switch (ev)
     {
     case EV_TIME_UP:
@@ -68,6 +68,7 @@ States Microwave::HandleHeatingState(Events ev)
 
     case EV_POWER_CHANGE:
         result = STATE_HEATING;
+        motor.SetPower(ui.GetRequestedPower());
         break;
 
     case EV_DOOR_OPEN:
@@ -93,6 +94,7 @@ States Microwave::HandlePauseState(Events ev)
         result = STATE_HEATING;
         light.On();
         ui.StartClock();
+        motor.SetPower(ui.GetRequestedPower());
         break;
 
     case EV_CLOCK_RESET:

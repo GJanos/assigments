@@ -91,13 +91,12 @@ TEST_F(MicrowaveTest, heating_power_change_func)
 
 TEST_F(MicrowaveTest, heating_time_up_func)
 {
-    microwave.HandleEvent(EV_START);
-    EXPECT_CALL(motor, SetPower(0));
+    EXPECT_CALL(motor, SetPower(0).Times(2));
     EXPECT_CALL(light, Off());
     EXPECT_CALL(ui, StopClock());
     EXPECT_CALL(ui, Ping());
-
-        EXPECT_EQ(STATE_IDLE, microwave.HandleHeatingState(EV_TIME_UP));
+    microwave.HandleEvent(EV_START);
+    EXPECT_EQ(STATE_IDLE, microwave.HandleHeatingState(EV_TIME_UP));
 }
 /*
 TEST_F(MicrowaveTest, idle_door_open)
