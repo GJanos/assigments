@@ -31,6 +31,9 @@ $(ASSIGNMENT_TEST): Makefile $(TEST_FILES)  $(HEADER_FILES)
 test: $(ASSIGNMENT_TEST)
 	@./$(ASSIGNMENT_TEST)
 
+valgrind: $(ASSIGNMENT_TEST)
+	valgrind --leak-check=yes ./ll_test
+
 clean:
 	@rm -f $(ASSIGNMENT_TEST)
 	@rm -rf kwinject.out .kwlp .kwps
