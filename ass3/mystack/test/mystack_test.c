@@ -38,6 +38,7 @@ void test_push_once()
 	TEST_ASSERT_EQUAL(sizeof(int), stack->objsize);
 	TEST_ASSERT_EQUAL(10, *((int *)stack->stack->obj));
 	TEST_ASSERT_NULL(stack->stack->next);
+	free(int_obj);
 }
 
 void test_push_twice()
@@ -57,6 +58,8 @@ void test_push_twice()
 	TEST_ASSERT_EQUAL_FLOAT(-1.24, *((double *)stack->stack->obj));
 	TEST_ASSERT_EQUAL_FLOAT(10.23, *((double *)stack->stack->next->obj));
 	TEST_ASSERT_NULL(stack->stack->next->next);
+	free(double_obj);
+	free(double_obj2);
 }
 
 void test_pop_empty_stack()
@@ -86,6 +89,8 @@ void test_pop_stack_twice()
 	TEST_ASSERT_EQUAL(0, stack->numelem);
 	TEST_ASSERT_EQUAL(sizeof(double), stack->objsize);
 	TEST_ASSERT_NULL(stack->stack);
+	free(double_obj);
+	free(double_obj2);
 }
 
 int main(int argc, char *argv[])
