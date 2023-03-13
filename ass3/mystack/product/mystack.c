@@ -49,6 +49,7 @@ int mystack_pop(StackMeta_t *stack, void *obj)
 		return -1;
 
 	StackObject_t *second = stack->stack->next;
+	free(stack->stack->obj);
 	free(stack->stack);
 	stack->stack = second;
 	stack->numelem--;
@@ -63,6 +64,7 @@ void mystack_destroy(StackMeta_t *stack)
 	while (iter != NULL)
 	{
 		StackObject_t *next = iter->next;
+		free(iter->obj);
 		free(iter);
 		iter = next;
 	}
