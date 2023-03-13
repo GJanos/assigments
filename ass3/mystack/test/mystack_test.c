@@ -19,7 +19,7 @@ void tearDown(void)
 
 void test_create_stack()
 {
-	StackMeta_t *stack = mystack_create(10);
+	stack = mystack_create(10);
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
 	TEST_ASSERT_EQUAL(0, stack->numelem);
 	TEST_ASSERT_EQUAL(10, stack->objsize);
@@ -28,7 +28,7 @@ void test_create_stack()
 
 void test_push_once()
 {
-	StackMeta_t *stack = mystack_create(sizeof(int));
+	stack = mystack_create(sizeof(int));
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
 	int *int_obj = (int *)malloc(sizeof(int));
 	*int_obj = 10;
@@ -42,7 +42,7 @@ void test_push_once()
 
 void test_push_twice()
 {
-	StackMeta_t *stack = mystack_create(sizeof(double));
+	stack = mystack_create(sizeof(double));
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
 	double *double_obj = (double *)malloc(sizeof(double));
 	*double_obj = 10.23;
@@ -61,7 +61,7 @@ void test_push_twice()
 
 void test_pop_empty_stack()
 {
-	StackMeta_t *stack = mystack_create(10);
+	stack = mystack_create(10);
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
 	void *placeholder = NULL;
 	int ret1 = mystack_pop(stack, placeholder);
@@ -70,7 +70,7 @@ void test_pop_empty_stack()
 
 void test_pop_stack_twice()
 {
-	StackMeta_t *stack = mystack_create(sizeof(double));
+	stack = mystack_create(sizeof(double));
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
 	double *double_obj = (double *)malloc(sizeof(double));
 	*double_obj = 10.23;
@@ -96,5 +96,6 @@ int main(int argc, char *argv[])
 	MY_RUN_TEST(test_push_twice);
 	MY_RUN_TEST(test_pop_empty_stack);
 	MY_RUN_TEST(test_pop_stack_twice);
+	
 	return UnityEnd();
 }
