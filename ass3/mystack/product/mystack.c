@@ -30,8 +30,11 @@ int mystack_push(StackMeta_t *stack, void *obj)
 	StackObject_t *new_obj = (StackObject_t *)malloc(sizeof(StackObject_t));
 	if (new_obj == NULL)
 		return -1;
-	new_obj->obj = obj;
+
+	new_obj->obj = malloc(stack->objsize);
+	memcpy(new_obj->obj, obj, stack->objsize);
 	new_obj->next = NULL;
+	free(obj);
 
 	if (stack->numelem != 0)
 	{
