@@ -16,7 +16,7 @@ void setUp(void)
 
 void tearDown(void)
 {
-	// This is run after EACH test
+	myqueue_delete(queue);
 }
 
 void test_queue_create_delete(void)
