@@ -74,5 +74,5 @@ void mystack_destroy(StackMeta_t *stack)
 
 int mystack_nofelem(StackMeta_t *stack)
 {
-	return 0;
+	return stack == NULL ? -1 : stack->numelem;
 }

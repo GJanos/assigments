@@ -7,9 +7,10 @@
 
 // I rather dislike keeping line numbers updated, so I made my own macro to ditch the line number
 #define MY_RUN_TEST(func) RUN_TEST(func, 0)
-StackMeta_t *stack = NULL;
+StackMeta_t *stack;
 void setUp(void)
 {
+	stack = NULL;
 }
 
 void tearDown(void)
@@ -88,6 +89,35 @@ void test_pop_stack_twice()
 	TEST_ASSERT_NULL(stack->stack);
 }
 
+void test_stack_numbers()
+{
+	int ret1 = mystack_nofelem(stack);
+	TEST_ASSERT_EQUAL(-1, ret1);
+
+	stack = mystack_create(sizeof(double));
+	int ret2 = mystack_nofelem(stack);
+	TEST_ASSERT_EQUAL(0, ret2);
+
+	TEST_ASSERT_NOT_EQUAL(NULL, stack);
+	double *double_obj = (double *)malloc(sizeof(double));
+	*double_obj = 10.23;
+	double *double_obj2 = (double *)malloc(sizeof(double));
+	*double_obj2 = -1.24;
+
+	mystack_push(stack, double_obj);
+	int ret3 = mystack_nofelem(stack);
+	TEST_ASSERT_EQUAL(1, ret3);
+
+	mystack_push(stack, double_obj2);
+	int ret4 = mystack_nofelem(stack);
+	TEST_ASSERT_EQUAL(2, ret4);
+
+	void *placeholder = NULL;
+	mystack_pop(stack, placeholder);
+	int ret5 = mystack_nofelem(stack);
+	TEST_ASSERT_EQUAL(1, ret5);
+}
+
 int main(int argc, char *argv[])
 {
 	UnityBegin();
@@ -96,6 +126,7 @@ int main(int argc, char *argv[])
 	MY_RUN_TEST(test_push_twice);
 	MY_RUN_TEST(test_pop_empty_stack);
 	MY_RUN_TEST(test_pop_stack_twice);
-	
+	MY_RUN_TEST(test_stack_numbers);
+
 	return UnityEnd();
 }
