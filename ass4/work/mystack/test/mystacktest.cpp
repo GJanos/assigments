@@ -1,9 +1,9 @@
 #include "ass4/work/mystack/product/mystack.h"
 #include "gtest/gtest.h"
-
+/*
 using ::testing::_;
 using ::testing::Return;
-
+*/
 class mystackTest : public ::testing::Test
 {
 protected:
