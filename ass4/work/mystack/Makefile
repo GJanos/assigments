@@ -9,7 +9,7 @@ SOURCES=$(wildcard product/*.cpp) \
 HEADERS=$(wildcard product/*.h) \
         $(wildcard test/*.h)
 
-LDFLAGS=-lgtest -lgmock_main -lpthread -lgmock
+LDFLAGS=-lgtest -lgmock -lgmock_main -lpthread
 
 CXX=g++
 
@@ -22,14 +22,7 @@ $(PRODUCT): $(SOURCES) $(HEADERS)
 
 clean:
 	@rm -rf $(PRODUCT)
-	@rm -rf kwinject.out .kwlp .kwps
-
-klocwork:
-	@kwcheck run
-
-klocwork_after_makefile_change: clean
-	@/opt/klocwork/kwenv.sh
-	@kwcheck run
 
 test: $(PRODUCT)
 	@./$(PRODUCT)
+
