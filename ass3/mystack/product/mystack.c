@@ -37,9 +37,7 @@ int mystack_push(StackMeta_t *stack, void *obj)
 	free(obj);
 
 	if (stack->numelem != 0)
-	{
 		new_obj->next = stack->stack;
-	}
 
 	stack->stack = new_obj;
 	stack->numelem++;
@@ -52,8 +50,14 @@ int mystack_pop(StackMeta_t *stack, void *obj)
 		return -1;
 
 	StackObject_t *second = stack->stack->next;
-	free(stack->stack->obj);
-	free(stack->stack);
+
+	if (obj != NULL)
+		memcpy(obj, stack->stack->obj, stack->objsize);
+
+	if (stack->stack->obj != NULL)
+		free(stack->stack->obj);
+	if (stack->stack != NULL)
+		free(stack->stack);
 	stack->stack = second;
 	stack->numelem--;
 	return 0;

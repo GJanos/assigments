@@ -25,7 +25,7 @@ $(TARGET_LIB): $(OBJS)
 	$(LD) $(LD_SHARE_FLAGS) -o $@ $^
 
 test : $(TARGET_LIB) $(TEST_OBJS)
-	$(LD) $(LDFLAGS) -o $(TEST_TARGET) $^ -L. -lmystack
+	$(LD) $(LDFLAGS) -o $(TEST_TARGET) $^ -L.
 	@./$(TEST_TARGET)
 
 clean:

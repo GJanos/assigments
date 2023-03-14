@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <unistd.h>
+// #include <unistd.h>
 
 #include "mystack.h"
 #include "myqueue.h"
@@ -29,12 +29,25 @@ void myqueue_delete(QueueMeta_t *queue)
 	free(queue);
 }
 
-int myqueue_enqueue(QueueMeta_t *que, void *obj)
+int myqueue_enqueue(QueueMeta_t *queue, void *obj)
 {
-	return 0;
+	return mystack_push(queue->stack_in, obj);
 }
 
 int myqueue_dequeue(QueueMeta_t *queue, void *obj)
 {
+	if (queue == NULL || queue->stack_out->numelem + queue->stack_in->numelem < 1)
+		return -1;
+	if (queue->stack_out->numelem == 0)
+	{
+		while (queue->stack_in->numelem != 0)
+		{
+			void *data = malloc(sizeof(queue->item_size));
+			memcpy(data, queue->stack_in->stack->obj, queue->item_size);
+			mystack_push(queue->stack_out, data);
+			mystack_pop(queue->stack_in, NULL);
+		}
+	}
+	mystack_pop(queue->stack_out, obj);
 	return 0;
 }

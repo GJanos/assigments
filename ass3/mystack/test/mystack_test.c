@@ -64,8 +64,7 @@ void test_pop_empty_stack()
 {
 	stack = mystack_create(10);
 	TEST_ASSERT_NOT_EQUAL(NULL, stack);
-	void *placeholder = NULL;
-	int ret1 = mystack_pop(stack, placeholder);
+	int ret1 = mystack_pop(stack, NULL);
 	TEST_ASSERT_EQUAL(-1, ret1);
 }
 
@@ -79,9 +78,16 @@ void test_pop_stack_twice()
 	*double_obj2 = -1.24;
 	mystack_push(stack, double_obj);
 	mystack_push(stack, double_obj2);
-	void *placeholder = NULL;
-	int ret1 = mystack_pop(stack, placeholder);
-	int ret2 = mystack_pop(stack, placeholder);
+
+	void *popped1 = malloc(sizeof(double));
+	void *popped2 = malloc(sizeof(double));
+	int ret1 = mystack_pop(stack, popped1);
+	int ret2 = mystack_pop(stack, popped2);
+	TEST_ASSERT_EQUAL_FLOAT(-1.24, *((double *)popped1));
+	TEST_ASSERT_EQUAL_FLOAT(10.23, *((double *)popped2));
+	free(popped1);
+	free(popped2);
+
 	TEST_ASSERT_EQUAL(0, ret1);
 	TEST_ASSERT_EQUAL(0, ret2);
 	TEST_ASSERT_EQUAL(0, stack->numelem);
@@ -112,8 +118,7 @@ void test_stack_numbers()
 	int ret4 = mystack_nofelem(stack);
 	TEST_ASSERT_EQUAL(2, ret4);
 
-	void *placeholder = NULL;
-	mystack_pop(stack, placeholder);
+	mystack_pop(stack, NULL);
 	int ret5 = mystack_nofelem(stack);
 	TEST_ASSERT_EQUAL(1, ret5);
 }
